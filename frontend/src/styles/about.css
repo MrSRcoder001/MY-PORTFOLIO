@@ -1,0 +1,130 @@
+:root {
+  --bg: #0f172a;
+  --card: #020617;
+  --primary: #38bdf8;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+}
+
+.about {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding: 80px 8%;
+  color: var(--text);
+}
+
+/* IMAGE SECTION */
+.about-img {
+  position: relative;
+  width: 380px;
+  flex-shrink: 0;
+}
+
+.about-img img {
+  width: 100%;
+  border-radius: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+/* decorative shape like reference */
+.img-bg-shape {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary), #0ea5e9);
+  border-radius: 20px;
+  top: 18px;
+  left: -18px;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* CONTENT */
+.about-content {
+  max-width: 600px;
+}
+
+.about-tag {
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.about-title {
+  font-size: 38px;
+  margin-bottom: 6px;
+}
+
+.about-title span {
+  color: var(--primary);
+}
+
+.about-role {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.about-desc {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* INFO GRID */
+.about-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 28px 0;
+}
+
+.about-info p {
+  font-size: 14.5px;
+  margin-bottom: 10px;
+}
+
+.about-info b {
+  color: var(--text);
+}
+
+/* BUTTON */
+.about-btn {
+  background: var(--primary);
+  color: #020617;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.about-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-info {
+    grid-template-columns: 1fr;
+  }
+
+  .about-img {
+    width: 300px;
+  }
+}

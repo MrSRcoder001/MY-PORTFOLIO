@@ -1,0 +1,92 @@
+.admin-page {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.admin-card {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(
+    180deg,
+    rgba(56, 189, 248, 0.06),
+    rgba(2, 6, 23, 0.95)
+  );
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+}
+
+.admin-card h2 {
+  font-size: 26px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+/* FORM */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 10px 4px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.admin-form input::placeholder,
+.admin-form textarea::placeholder {
+  color: var(--muted);
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  border-color: var(--primary);
+}
+
+/* BUTTON */
+.btn.primary {
+  margin-top: 10px;
+  background: var(--primary);
+  color: #020617;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+}

@@ -1,0 +1,78 @@
+.resume-section {
+  background: var(--bg);
+  min-height: 100vh;          /* 👈 full screen height */
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;    /* horizontal */
+  align-items: center;        /* 👈 vertical */
+}
+
+
+.resume-card {
+  background: linear-gradient(
+    180deg,
+    rgba(56, 189, 248, 0.08),
+    rgba(2, 6, 23, 0.9)
+  );
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 18px;
+  padding: 40px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.resume-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.resume-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 22px;
+  font-size: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Primary */
+.btn.primary {
+  background: var(--primary);
+  color: #020617;
+}
+
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.4);
+}
+
+/* Outline */
+.btn.outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.btn.outline:hover {
+  background: var(--primary);
+  color: #020617;
+}

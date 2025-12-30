@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #1f1f2e, #0f0f1a);
+  color: #fff;
+}
+
+section {
+  padding: 80px 8%;
+}
+
+h1, h2 {
+  font-weight: 700;
+}
+
+img {
+  max-width: 100%;
+}
