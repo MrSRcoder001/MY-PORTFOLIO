@@ -1,5 +1,8 @@
+import "../styles/resume.css";
+import server from "../environment";
+
 const Resume = () => {
-  const resumeURL = `http://localhost:5000/uploads/resume.pdf?v=${Date.now()}`;
+  const resumeURL = `${server.origin}/uploads/resume.pdf`;
 
   return (
     <section className="resume-section">
@@ -10,11 +13,16 @@ const Resume = () => {
         </p>
 
         <div className="resume-actions">
-          <a href={resumeURL} target="_blank" className="btn primary">
+          <a
+            href={resumeURL}
+            target="_blank"
+            rel="noreferrer"
+            className="btn primary"
+          >
             View Resume
           </a>
 
-          <a href={resumeURL} download className="btn outline">
+          <a href={resumeURL} download="Satish-Rathod-Resume.pdf" className="btn outline">
             Download Resume
           </a>
         </div>

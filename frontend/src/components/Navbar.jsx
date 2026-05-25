@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/navbar.css";
 
@@ -6,6 +6,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const checkAuth = () => {
@@ -24,12 +25,23 @@ const Navbar = () => {
     };
   }, []);
 
+  // Handle smooth scroll if we are already on the home page
+  const handleScrollTo = (e, targetId) => {
+    setOpen(false);
+    if (location.pathname === "/") {
+      e.preventDefault();
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
+
   const logoutHandler = () => {
     localStorage.removeItem("token");
-
-    // 🔥 notify app
     window.dispatchEvent(new Event("auth-change"));
-
     navigate("/");
   };
 
@@ -43,6 +55,13 @@ const Navbar = () => {
         <div
           className={`menu-toggle ${open ? "open" : ""}`}
           onClick={() => setOpen(!open)}
+          role="button"
+          tabIndex={0}
+          aria-label="Toggle navigation menu"
+          aria-expanded={open}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") setOpen((v) => !v);
+          }}
         >
           <span></span>
           <span></span>
@@ -50,33 +69,45 @@ const Navbar = () => {
         </div>
 
         <ul className={`nav-links ${open ? "active" : ""}`}>
-          <li><Link to="/" onClick={() => setOpen(false)}>Home</Link></li>
-          <li><Link to="/resume" onClick={() => setOpen(false)}>CV</Link></li>
-          <li><Link to="/about" onClick={() => setOpen(false)}>About</Link></li>
-          <li><Link to="/skills" onClick={() => setOpen(false)}>Skills</Link></li>
-          <li><Link to="/projects" onClick={() => setOpen(false)}>Projects</Link></li>
-          <li><Link to="/contact" onClick={() => setOpen(false)}>Contact</Link></li>
+          <li>
+            <a href="/#home" onClick={(e) => handleScrollTo(e, "home")}>Home</a>
+          </li>
+          <li>
+            <NavLink to="/resume" onClick={() => setOpen(false)}>CV</NavLink>
+          </li>
+          <li>
+            <a href="/#about" onClick={(e) => handleScrollTo(e, "about")}>About</a>
+          </li>
+          <li>
+            <a href="/#skills" onClick={(e) => handleScrollTo(e, "skills")}>Skills</a>
+          </li>
+          <li>
+            <a href="/#projects" onClick={(e) => handleScrollTo(e, "projects")}>Projects</a>
+          </li>
+          <li>
+            <a href="/#contact" onClick={(e) => handleScrollTo(e, "contact")}>Contact</a>
+          </li>
 
           {!isAuth ? (
             <li>
-              <Link
+              <NavLink
                 to="/admin/login"
                 className="nav-btn"
                 onClick={() => setOpen(false)}
               >
                 Login
-              </Link>
+              </NavLink>
             </li>
           ) : (
             <>
               <li>
-                <Link
+                <NavLink
                   to="/admin/dashboard"
                   className="nav-btn"
                   onClick={() => setOpen(false)}
                 >
                   Dashboard
-                </Link>
+                </NavLink>
               </li>
               <li>
                 <button className="nav-btn logout" onClick={logoutHandler}>

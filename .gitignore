@@ -1,0 +1,7 @@
+# Dependencies / build outputs
+**/node_modules/
+**/dist/
+
+# Local environment files (never commit secrets)
+**/.env
+

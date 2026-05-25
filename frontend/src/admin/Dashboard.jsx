@@ -19,15 +19,23 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const projectsRes = await API.get("/projects");
-        const skillsRes = await API.get("/skills");
+        const [projectsRes, skillsRes] = await Promise.allSettled([
+          API.get("/projects"),
+          API.get("/skills"),
+        ]);
+
+        const projectsCount =
+          projectsRes.status === "fulfilled" ? projectsRes.value.data.length : 0;
+        const skillsCount =
+          skillsRes.status === "fulfilled" ? skillsRes.value.data.length : 0;
 
         setStats({
-          projects: projectsRes.data.length,
-          skills: skillsRes.data.length,
+          projects: projectsCount,
+          skills: skillsCount,
         });
       } catch (error) {
         console.error("Dashboard stats error", error);
+        setStats({ projects: 0, skills: 0 });
       }
     };
 
@@ -73,6 +81,7 @@ const Dashboard = () => {
       {/* ADMIN ACTIONS */}
 
 <div className="admin-actions">
+  <Link to="/admin/manage-projects">📝 Manage Projects</Link>
   <Link to="/admin/addProject">➕ Add Project</Link>
   <Link to="/admin/add-skill">➕ Add Skill</Link>
   <Link to="/admin/upload-resume">📄 Upload Resume</Link>

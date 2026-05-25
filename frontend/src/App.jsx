@@ -1,10 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Skills from "./pages/Skills";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
 import UploadResume from "./admin/UploadResume";
 import Dashboard from "./admin/Dashboard";
 import Resume from "./pages/Resume"
@@ -12,15 +8,22 @@ import AddProject from "./admin/AddProject";
 import AdminLogin from "./admin/AdminLogin";
 import PrivateRoute from "./admin/PrivateRoute";
 import AddSkill from "./admin/AddSkill";
-
+import ManageProjects from "./admin/ManageProjects";
+import EditProject from "./admin/EditProject";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Routes>
-
-
+        <Route path="/" element={<Home />} />
+        <Route path="/resume" element={<Resume />} />
+        
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        
         <Route
           path="/admin/dashboard"
           element={
@@ -29,7 +32,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/admin/upload-resume"
           element={
@@ -38,7 +40,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/admin/add-skill"
           element={
@@ -47,14 +48,30 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/admin/addProject" element={<AddProject />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/addProject"
+          element={
+            <PrivateRoute>
+              <AddProject />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/manage-projects"
+          element={
+            <PrivateRoute>
+              <ManageProjects />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/edit-project/:id"
+          element={
+            <PrivateRoute>
+              <EditProject />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

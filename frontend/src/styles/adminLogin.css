@@ -1,53 +1,64 @@
-:root {
-  --bg: #020617;
-  --primary: #38bdf8;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --card: #020617;
-}
-
 /* PAGE */
 .admin-page {
-  min-height: 100vh;
-  background: var(--bg);
+  min-height: calc(100vh - 80px);
+  background: var(--bg-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-page::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(129, 140, 248, 0.15);
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+  animation: pulse 8s infinite alternate;
 }
 
 /* CARD */
 .admin-card {
   width: 100%;
   max-width: 420px;
-  background: linear-gradient(
-    180deg,
-    rgba(56, 189, 248, 0.06),
-    rgba(2, 6, 23, 0.95)
-  );
-  border: 1px solid rgba(56, 189, 248, 0.15);
-  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1;
+  animation: slideInLeft 0.6s ease forwards;
 }
 
 .admin-card h2 {
-  font-size: 26px;
+  font-size: 28px;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  background: linear-gradient(to right, #fff, var(--muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
   font-size: 14px;
   color: var(--muted);
   margin-bottom: 30px;
+  line-height: 1.5;
 }
 
 /* FORM */
 .admin-form {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 
 .form-group {
@@ -58,18 +69,20 @@
 .form-group label {
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .admin-form input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
-  padding: 10px 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  padding: 12px 16px;
   font-size: 14px;
   color: var(--text);
+  border-radius: 12px;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: var(--transition);
+  font-family: inherit;
 }
 
 .admin-form input::placeholder {
@@ -78,34 +91,44 @@
 
 .admin-form input:focus {
   border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 2px var(--primary-glow);
 }
 
 /* BUTTON */
 .btn.primary {
   margin-top: 10px;
-  background: var(--primary);
-  color: #020617;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
   border: none;
-  padding: 12px;
+  padding: 14px;
   border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: var(--transition);
+  box-shadow: 0 10px 20px -10px var(--primary);
+  font-size: 1rem;
 }
 
-.btn.primary:hover {
+.btn.primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 15px 25px -10px var(--primary);
+  filter: brightness(1.1);
+}
+
+.btn.primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* ERROR MESSAGE */
 .error {
   background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.5);
-  color: #ff6b6b;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
   padding: 12px 16px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   text-align: center;
 }

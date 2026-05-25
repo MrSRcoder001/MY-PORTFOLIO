@@ -7,17 +7,27 @@ const AddSkill = () => {
     name: "",
     level: "Beginner",
   });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      setStatus({ type: "", message: "" });
+      setSubmitting(true);
       await API.post("/skills", skill, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      alert("Skill Added Successfully 🚀");
+      setStatus({ type: "success", message: "Skill added successfully." });
       setSkill({ name: "", level: "Beginner" });
     } catch (error) {
-      alert("Error adding skill: " + error.message);
+      console.error("Error adding skill:", error);
+      setStatus({
+        type: "error",
+        message: error.response?.data?.message || error.message,
+      });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -28,6 +38,12 @@ const AddSkill = () => {
         <p className="subtitle">
           Add a new skill to your portfolio.
         </p>
+
+        {status.message && (
+          <div className={`form-status ${status.type}`} role="status">
+            {status.message}
+          </div>
+        )}
 
         <form className="admin-form" onSubmit={submitHandler}>
           <div className="form-group">
@@ -46,20 +62,11 @@ const AddSkill = () => {
           <div className="form-group">
             <label>Proficiency Level</label>
             <select
+              className="admin-select"
               value={skill.level}
               onChange={(e) =>
                 setSkill({ ...skill, level: e.target.value })
               }
-              style={{
-                background: "transparent",
-                border: "none",
-                borderBottom: "1px solid rgba(148, 163, 184, 0.4)",
-                padding: "10px 4px",
-                fontSize: "14px",
-                color: "var(--text)",
-                outline: "none",
-                cursor: "pointer",
-              }}
             >
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -67,8 +74,8 @@ const AddSkill = () => {
             </select>
           </div>
 
-          <button type="submit" className="btn primary">
-            Add Skill
+          <button type="submit" className="btn primary" disabled={submitting}>
+            {submitting ? "Adding..." : "Add Skill"}
           </button>
         </form>
       </div>

@@ -1,5 +1,5 @@
 import express from "express";
-import { getProjects, addProject, deleteProject } from "../controllers/projectController.js";
+import { getProjects, addProject, deleteProject, updateProject } from "../controllers/projectController.js";
 import protect from "../middleware/authMiddleware.js";
 import upload from "../middleware/projectUpload.js";
 
@@ -14,8 +14,7 @@ router.post(
   addProject
 );
 router.delete("/:id", protect, deleteProject);
-// Add update route
-// router.put("/:id", protect, updateProject);
+router.put("/:id", protect, upload.single("image"), updateProject);
 
 
 export default router;

@@ -1,5 +1,6 @@
 import aboutImg from "../assets/admin.png";
 import "../styles/about.css";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -15,13 +16,13 @@ const About = () => {
         <p className="about-tag">ABOUT ME</p>
 
         <h2 className="about-title">
-          Hello, I’m <span>Satish Rathod</span>
+          Hello, I'm <span>Satish Rathod</span>
         </h2>
 
         <h4 className="about-role">Full Stack Developer</h4>
 
         <p className="about-desc">
-          I’m a passionate Full Stack Developer with a strong focus on building
+          I'm a passionate Full Stack Developer with a strong focus on building
           clean, scalable, and user-friendly web applications. I enjoy solving
           real-world problems using modern technologies and writing code that is
           both efficient and maintainable.
@@ -49,7 +50,9 @@ const About = () => {
           </div>
         </div>
 
-        <button className="about-btn">Get In Touch</button>
+        <Link to="/contact" className="about-btn">
+          Get In Touch
+        </Link>
       </div>
     </section>
   );
