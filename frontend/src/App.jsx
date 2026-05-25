@@ -11,6 +11,7 @@ import Resume from "./pages/Resume"
 import AddProject from "./admin/AddProject";
 import AdminLogin from "./admin/AdminLogin";
 import PrivateRoute from "./admin/PrivateRoute";
+import AddSkill from "./admin/AddSkill";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
 
 
         <Route
-          path="/dashboard"
+          path="/admin/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
@@ -30,7 +31,7 @@ function App() {
         />
 
         <Route
-          path="/upload-resume"
+          path="/admin/upload-resume"
           element={
             <PrivateRoute>
               <UploadResume />
@@ -38,7 +39,14 @@ function App() {
           }
         />
 
-        <Route path="/admin/upload-resume" element={<UploadResume />} />
+        <Route
+          path="/admin/add-skill"
+          element={
+            <PrivateRoute>
+              <AddSkill />
+            </PrivateRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/skills" element={<Skills />} />
@@ -46,12 +54,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/admin/addProject" element={<AddProject />} />
-        <Route path="/adminLogin" element={<AdminLogin />} />
-
-
-
-
-
+        <Route path="/admin/login" element={<AdminLogin />} />
       </Routes>
     </BrowserRouter>
   );

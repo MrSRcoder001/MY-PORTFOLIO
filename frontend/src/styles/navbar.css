@@ -155,3 +155,32 @@
     font-size: 1.5rem;
   }
 }
+
+/* ================= NAV BUTTONS ================= */
+.nav-btn {
+  padding: 8px 16px;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-btn:hover {
+  background: var(--primary);
+  color: #020617;
+}
+
+.nav-btn.logout {
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.nav-btn.logout:hover {
+  color: #ff6b6b;
+}

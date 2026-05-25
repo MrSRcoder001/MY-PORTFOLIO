@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/adminLogin.css";
 
@@ -7,6 +8,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -16,9 +18,15 @@ const AdminLogin = () => {
     try {
       const res = await API.post("/admin/login", { email, password });
 
+      console.log("LOGIN RESPONSE:", res.data);
+
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
-        window.location.href = "/dashboard";
+
+        // 🔥 notify navbar
+        window.dispatchEvent(new Event("auth-change"));
+
+        navigate("/admin/dashboard");
       } else {
         setError("Invalid server response");
       }
@@ -46,7 +54,6 @@ const AdminLogin = () => {
             <label>Email Address</label>
             <input
               type="email"
-              placeholder="admin@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -57,7 +64,6 @@ const AdminLogin = () => {
             <label>Password</label>
             <input
               type="password"
-              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

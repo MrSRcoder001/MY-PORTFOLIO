@@ -1,8 +1,15 @@
 import express from "express";
-// import  contactRouter  from "../routes/contactRoutes.js";
+import Contact from "../models/Contact.js";
+
 const router = express.Router();
-function contact(){
-    console.log("contact")
-}
+
+router.post("/", async (req, res) => {
+  try {
+    const contact = await Contact.create(req.body);
+    res.json({ message: "Message received", contact });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 export default router;

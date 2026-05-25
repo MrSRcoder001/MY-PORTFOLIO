@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import "../styles/projects.css";
-import images from "../assets/evStation.jpg"
 
 const defaultProjects = new Array(3).fill(null);
 
@@ -38,7 +37,7 @@ const Projects = () => {
               <div className="project-image">
                 {p ? (
                   <img
-                    src={images}
+                    src={p.image || `https://via.placeholder.com/280x190?text=${p.title}`}
                     alt={p.title}
                   />
                 ) : (

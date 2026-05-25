@@ -1,5 +1,7 @@
 import "../styles/home.css";
-import admin from "../assets/admin.png"
+import admin from "../assets/admin.png";
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <section className="home">
@@ -19,24 +21,49 @@ const Home = () => {
           </p>
 
           <div className="home-buttons">
-            <a href="/projects" className="btn primary">View Projects</a>
-            <a href="/contact" className="btn outline">Contact Me</a>
+            <Link to="/projects" className="btn primary">
+              View Projects
+            </Link>
+            <Link to="/contact" className="btn outline">
+              Contact Me
+            </Link>
           </div>
 
+          {/* SOCIAL LINKS */}
           <div className="socials">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="GitHub">gh</a>
-            <a href="#" aria-label="Portfolio">be</a>
+            <a
+              href="https://www.linkedin.com/in/satish-rathod-84a2a1212/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              In
+            </a>
+
+            <a
+              href="https://github.com/MrSRcoder001"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              Git
+            </a>
+
+            <a
+              href="https://my-portfolio-2-xomq.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Portfolio"
+            >
+              Me
+            </a>
           </div>
         </div>
 
         {/* RIGHT IMAGE */}
         <div className="home-right">
           <div className="blob">
-            <img
-              src={admin}
-              alt="Developer"
-            />
+            <img src={admin} alt="Satish | MERN Stack Developer" />
           </div>
         </div>
 

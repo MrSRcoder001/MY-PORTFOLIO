@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import "../styles/adminDashboard.css";
+ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -70,11 +71,13 @@ const Dashboard = () => {
       </div>
 
       {/* ADMIN ACTIONS */}
-      <div className="admin-actions">
-        <a href="/admin/addProject">➕ Add Project</a>
-        <a href="/admin/add-skill">➕ Add Skill</a>
-        <a href="/admin/upload-resume">📄 Upload Resume</a>
-      </div>
+
+<div className="admin-actions">
+  <Link to="/admin/addProject">➕ Add Project</Link>
+  <Link to="/admin/add-skill">➕ Add Skill</Link>
+  <Link to="/admin/upload-resume">📄 Upload Resume</Link>
+</div>
+
 
       {/* CTA */}
       <div className="cta-card">
