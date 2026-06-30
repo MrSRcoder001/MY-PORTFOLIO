@@ -46,6 +46,7 @@
 .nav-links {
   list-style: none;
   display: flex;
+  align-items: center; /* Added for alignment */
   gap: 36px;
 }
 

@@ -1,6 +1,6 @@
 import express from "express";
 import Contact from "../models/Contact.js";
-
+import nodemailer from "nodemailer";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -28,6 +28,31 @@ router.post("/", async (req, res) => {
       email,
       message,
     });
+
+    try {
+      // Create transporter
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: "satishcse27@gmail.com",
+        subject: `Portfolio Contact from ${resolvedName}`,
+        text: `You have received a new message from your portfolio website.\n\nName: ${resolvedName}\nEmail: ${email}\n\nMessage:\n${message}`,
+        replyTo: email,
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully!");
+    } catch (mailError) {
+      console.error("Failed to send email:", mailError);
+      // We don't throw error to the user if saving contact succeeded, but email failed.
+    }
 
     res.json({ message: "Message received", id: contact._id });
   } catch (error) {

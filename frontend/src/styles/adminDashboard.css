@@ -116,9 +116,9 @@
 .admin-actions {
   max-width: 1200px;
   margin: 0 auto 50px auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  flex-wrap: wrap;
   position: relative;
   z-index: 1;
   animation: fadeUp 1s ease forwards 0.5s;

@@ -1,7 +1,5 @@
 import aboutImg from "../assets/admin.png";
 import "../styles/about.css";
-import { Link } from "react-router-dom";
-
 const About = () => {
   return (
     <section className="about">
@@ -50,9 +48,9 @@ const About = () => {
           </div>
         </div>
 
-        <Link to="/contact" className="about-btn">
+        <a href="#contact" className="about-btn">
           Get In Touch
-        </Link>
+        </a>
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/navbar.css";
@@ -13,7 +14,7 @@ const Navbar = () => {
       const token = localStorage.getItem("token");
       setIsAuth(!!token);
     };
-
+    
     // run on load
     checkAuth();
 
@@ -95,7 +96,7 @@ const Navbar = () => {
                 className="nav-btn"
                 onClick={() => setOpen(false)}
               >
-                Login
+                Admin-Login
               </NavLink>
             </li>
           ) : (

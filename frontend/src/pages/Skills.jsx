@@ -22,22 +22,22 @@ import { FaAws } from "react-icons/fa";
 import API from "../services/api";
 
 const localSkills = [
-  { name: "Python", icon: <SiPython /> },
-  { name: "Django", icon: <SiDjango /> },
-  { name: "React", icon: <SiReact /> },
-  { name: "Node JS", icon: <SiNodedotjs /> },
-  { name: "JavaScript", icon: <SiJavascript /> },
-  { name: "MongoDB", icon: <SiMongodb /> },
-  { name: "MySQL", icon: <SiMysql /> },
-  { name: "Docker", icon: <SiDocker /> },
-  { name: "AWS", icon: <FaAws /> },
-  { name: "PostgreSQL", icon: <SiPostgresql /> },
-  { name: "Firebase", icon: <SiFirebase /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-  { name: "Bootstrap", icon: <SiBootstrap /> },
-  { name: "GitHub", icon: <SiGithub /> },
-  { name: "Java", icon: <SiOpenjdk /> },
-  { name: "C / C++", icon: <SiCplusplus /> },
+  { name: "Python", icon: <SiPython color="#3776AB" /> },
+  { name: "Django", icon: <SiDjango color="#092E20" /> },
+  { name: "React", icon: <SiReact color="#61DAFB" /> },
+  { name: "Node JS", icon: <SiNodedotjs color="#339933" /> },
+  { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
+  { name: "MongoDB", icon: <SiMongodb color="#47A248" /> },
+  { name: "MySQL", icon: <SiMysql color="#4479A1" /> },
+  { name: "Docker", icon: <SiDocker color="#2496ED" /> },
+  { name: "AWS", icon: <FaAws color="#FF9900" /> },
+  { name: "PostgreSQL", icon: <SiPostgresql color="#4169E1" /> },
+  { name: "Firebase", icon: <SiFirebase color="#FFCA28" /> },
+  { name: "Tailwind CSS", icon: <SiTailwindcss color="#06B6D4" /> },
+  { name: "Bootstrap", icon: <SiBootstrap color="#7952B3" /> },
+  { name: "GitHub", icon: <SiGithub color="#ffffff" /> },
+  { name: "Java", icon: <SiOpenjdk color="#ED8B00" /> },
+  { name: "C / C++", icon: <SiCplusplus color="#00599C" /> },
 ];
 
 const normalizeSkillName = (name = "") =>
@@ -79,7 +79,7 @@ const Skills = () => {
         return {
           name,
           level: s?.level || "",
-          icon: iconByName.get(normalizeSkillName(name)) || <SiReact />,
+          icon: iconByName.get(normalizeSkillName(name)) || <SiReact color="#61DAFB" />,
         };
       });
     }
