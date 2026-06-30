@@ -11,7 +11,7 @@ import skillRoutes from "./routes/skillRoutes.js";
 import aboutRoutes from "./routes/aboutRoutes.js";
 
 dotenv.config();
-connectDB();
+await connectDB();
 
 const app = express();
 app.use(cors());
