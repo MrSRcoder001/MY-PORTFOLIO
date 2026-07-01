@@ -3,7 +3,7 @@ import server from "../environment";
 
 const API = axios.create({
   baseURL: server.baseURL,
-  timeout: 10000,
+  timeout: 60000,
 });
 
 // Attach token automatically when available.
